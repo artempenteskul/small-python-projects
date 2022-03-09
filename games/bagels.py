@@ -2,7 +2,7 @@ import random
 
 
 NUM_DIGITS = 3
-NUM_MAX_GUESSES = 10
+NUM_MAX_GUESSES = 8
 
 
 def getSecretNum():
@@ -57,7 +57,6 @@ def main():
 
         print('I have thought up a number.')
         print(f'You have {NUM_MAX_GUESSES} guesses to get it.')
-        print(secretNum)
 
         numGuesses = 1
         while numGuesses <= NUM_MAX_GUESSES:
