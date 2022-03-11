@@ -9,8 +9,12 @@ if message == '':
     print('You haven\'t entered the message. Start program again')
     sys.exit()
 
+try:
+    file = open('bitmapworld.txt', 'r')
+except IOError:
+    print('Error while file opening')
+    sys.exit()
 
-file = open('bitmapworld.txt', 'r')
 for line in file:
     for elementIndex, elementValue in enumerate(line):
         if elementValue == ' ':
