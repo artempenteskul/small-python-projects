@@ -45,7 +45,6 @@ def main():
         print(birthday_date_str, end='')
 
     print()
-    print()
 
     match = get_match(birthdays)
     print('Result of simulation:')
@@ -57,6 +56,24 @@ def main():
         print('There are no matching birthdays!')
 
     print()
+
+    print(f'Generating {num_of_birthdays} birthdays 100_000 times')
+    input('> Press Enter to begin ...')
+
+    print('Let\'s run another 100_000 simulations.')
+    match_counter = 0
+    for i in range(100_000):
+        if i % 10_000 == 0:
+            print(f'{i} simulations run ...')
+        birthdays = get_birthdays(num_of_birthdays)
+        if get_match(birthdays) is not None:
+            match_counter += 1
+
+    print('100_000 simulations run !')
+
+    probability = round(match_counter / 100_000 * 100, 2)
+    print(f'Number of birthdays: {num_of_birthdays}')
+    print(f'Probability of match: {probability}%')
 
 
 if __name__ == '__main__':
