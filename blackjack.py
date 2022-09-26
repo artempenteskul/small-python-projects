@@ -33,7 +33,7 @@ def main():
             sys.exit()
 
         print(f'Money: {money}')
-        bet = get_bet(money)
+        bet = get_bet(money, money)
 
         deck = get_deck()
         dealer_hand = [deck.pop(), deck.pop()]
@@ -53,7 +53,7 @@ def main():
             print()
 
             if move.upper() == 'D':
-                additional_bet = get_bet(min(bet, (money - bet)))
+                additional_bet = get_bet(min(bet, (money - bet)), money)
                 bet += additional_bet
                 print(f'Bet increased to ${bet}')
                 print(f'Bet: {bet}')
@@ -67,7 +67,7 @@ def main():
                 if get_hand_value(player_hand) > 21:
                     continue
 
-            if move in ('S', 'D'):
+            if move.upper() in ('S', 'D'):
                 break
 
         if get_hand_value(player_hand) <= 21:
@@ -102,12 +102,15 @@ def main():
         print()
 
 
-def get_bet(max_bet):
+def get_bet(max_bet, money):
     while True:
         print(f'How much do you bet? (1-{max_bet} or QUIT)')
         bet = input('> ').upper().strip()
 
         if bet in ('Q', 'QUIT'):
+            result_of_game = abs(money - MONEY_AMOUNT)
+            print(f'--- Result of your game ---')
+            print(f'You\'ve lost ${result_of_game}!') if result_of_game < 0 else print(f'You\'ve earned ${result_of_game}')
             print('Thanks for playing!')
             sys.exit()
 
