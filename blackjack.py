@@ -49,13 +49,16 @@ def main():
 
             move = get_move(player_hand, money - bet)
 
-            if move.upper == 'D':
+            print(move)
+            print()
+
+            if move.upper() == 'D':
                 additional_bet = get_bet(min(bet, (money - bet)))
                 bet += additional_bet
                 print(f'Bet increased to ${bet}')
                 print(f'Bet: {bet}')
 
-            if move.upper in ('H', 'D'):
+            if move.upper() in ('H', 'D'):
                 new_card = deck.pop()
                 rank, suit = new_card
                 print(f'You drew a {rank} of {suit}')
@@ -118,7 +121,7 @@ def get_bet(max_bet):
 
 def get_deck():
     deck = []
-    for suit in ('HEARTS', 'DIAMONDS', 'SPADES', 'CLUBS'):
+    for suit in (HEARTS, DIAMONDS, SPADES, CLUBS):
         for rank in range(2, 11):
             deck.append((str(rank), suit))
         for rank in ('J', 'K', 'Q', 'A'):
@@ -169,7 +172,7 @@ def display_cards(hand, show_backside=False):
         if card == hand[-1]:
             print(card_str)
         else:
-            print(card_str, end='')
+            print(card_str, end=' ')
 
 
 def get_move(hand, money):
