@@ -13,9 +13,6 @@ def get_secret_num():
     for i in range(NUM_DIGITS):
         secret_num += numbers[i]
 
-    print('########')
-    print(secret_num)
-
     return secret_num
 
 
