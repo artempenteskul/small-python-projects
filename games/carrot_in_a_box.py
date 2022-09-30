@@ -1,3 +1,4 @@
+import sys
 import random
 
 
@@ -53,11 +54,13 @@ def main():
         input('Press Enter to clear the screen ...')
         clear_console()
 
-        guess_if_carrot_inside(is_box_with_carrot, score, player_to_bluff, player_to_bluff)
+        guess_if_carrot_inside(is_box_with_carrot, score, player_to_guess, player_to_bluff)
 
         clear_console()
         move_bluff_turn, move_guess_turn = change_moves_turns(move_bluff_turn, move_guess_turn)
         games_counter += 1
+
+        resume_game(score, player_one, player_two)
 
 
 def clear_console():
@@ -96,6 +99,16 @@ def change_moves_turns(move_bluff_turn, move_guess_turn):
         return 2, 1
     elif move_bluff_turn == 2 and move_guess_turn == 1:
         return 1, 2
+
+
+def resume_game(score, player_one, player_two):
+    response = input('DO YOU WANNA KEEP PLAYING? (q to QUIT)').rstrip().lower()
+    if response.startswith('q'):
+        print()
+        print('--- FINAL SCORE ---')
+        print(f'PLAYER {player_one}: {score[player_one]}')
+        print(f'PLAYER {player_two}: {score[player_two]}')
+        sys.exit()
 
 
 if __name__ == '__main__':
