@@ -55,12 +55,13 @@ def main():
         clear_console()
 
         guess_if_carrot_inside(is_box_with_carrot, score, player_to_guess, player_to_bluff)
+        print()
 
-        clear_console()
         move_bluff_turn, move_guess_turn = change_moves_turns(move_bluff_turn, move_guess_turn)
         games_counter += 1
 
         resume_game(score, player_one, player_two)
+        clear_console()
 
 
 def clear_console():
@@ -75,7 +76,7 @@ def manage_players_roles(move_bluff_turn, move_guess_turn, player_one, player_tw
     if move_bluff_turn == 1 and move_guess_turn == 2:
         return player_one, player_two
     elif move_bluff_turn == 2 and move_guess_turn == 1:
-        return player_two, player_two
+        return player_two, player_one
     else:
         raise Exception
 
@@ -102,7 +103,7 @@ def change_moves_turns(move_bluff_turn, move_guess_turn):
 
 
 def resume_game(score, player_one, player_two):
-    response = input('DO YOU WANNA KEEP PLAYING? (q to QUIT)').rstrip().lower()
+    response = input('DO YOU WANNA KEEP PLAYING? (q to QUIT): ').rstrip().lower()
     if response.startswith('q'):
         print()
         print('--- FINAL SCORE ---')
