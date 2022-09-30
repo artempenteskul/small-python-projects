@@ -36,41 +36,24 @@ def main():
         print()
 
         is_box_with_carrot = is_carrot_inside()
-        if move_bluff_turn == 1:
-            print(f'Player {player_two} should close eyes!')
-            input(f'Player {player_one}, press enter to discover if carrot is inside your box ... ')
-            print()
+        player_to_bluff, player_to_guess = manage_players_roles(move_bluff_turn, move_guess_turn, player_one, player_two)
 
-            if is_box_with_carrot:
-                print('CARROT IS INSIDE YOUR BOX!')
-            else:
-                print('YOUR BOX IS EMPTY!')
+        print(f'Player {player_to_guess} should close eyes!')
+        input(f'Player {player_to_bluff}, press enter to discover if carrot is inside your box ... ')
+        print()
 
-            print('YOU NEED TO DECEIVE YOUR OPPONENT!')
+        if is_box_with_carrot:
+            print('CARROT IS INSIDE YOUR BOX!')
+        else:
+            print('YOUR BOX IS EMPTY!')
 
-            print()
-            input('Press Enter to clear the screen ...')
-            clear_console()
+        print('YOU NEED TO DECEIVE YOUR OPPONENT!')
 
-            guess_if_carrot_inside(is_box_with_carrot, score, player_two, player_one)
+        print()
+        input('Press Enter to clear the screen ...')
+        clear_console()
 
-        elif move_bluff_turn == 2:
-            print(f'Player {player_one} should close eyes!')
-            input(f'Player {player_two}, press enter to discover if carrot is inside your box ...')
-            print()
-
-            if is_box_with_carrot:
-                print('CARROT IS INSIDE YOUR BOX!')
-            else:
-                print('YOUR BOX IS EMPTY!')
-
-            print('YOU NEED TO DECEIVE YOUR OPPONENT!')
-
-            print()
-            input('Press Enter to clear the screen ...')
-            clear_console()
-
-            guess_if_carrot_inside(is_box_with_carrot, score, player_one, player_two)
+        guess_if_carrot_inside(is_box_with_carrot, score, player_to_bluff, player_to_bluff)
 
         clear_console()
         move_bluff_turn, move_guess_turn = change_moves_turns(move_bluff_turn, move_guess_turn)
@@ -85,11 +68,13 @@ def is_carrot_inside():
     return random.choice((False, True))
 
 
-def change_moves_turns(move_bluff_turn, move_guess_turn):
+def manage_players_roles(move_bluff_turn, move_guess_turn, player_one, player_two):
     if move_bluff_turn == 1 and move_guess_turn == 2:
-        return 2, 1
+        return player_one, player_two
     elif move_bluff_turn == 2 and move_guess_turn == 1:
-        return 1, 2
+        return player_two, player_two
+    else:
+        raise Exception
 
 
 def guess_if_carrot_inside(is_box_with_carrot, score, player_to_guess, player_to_bluff):
@@ -104,6 +89,13 @@ def guess_if_carrot_inside(is_box_with_carrot, score, player_to_guess, player_to
     else:
         print('YOU ARE WRONG! Your opponent earns 1 point!')
         score[player_to_bluff] += 1
+
+
+def change_moves_turns(move_bluff_turn, move_guess_turn):
+    if move_bluff_turn == 1 and move_guess_turn == 2:
+        return 2, 1
+    elif move_bluff_turn == 2 and move_guess_turn == 1:
+        return 1, 2
 
 
 if __name__ == '__main__':
