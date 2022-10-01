@@ -2,6 +2,10 @@ import sys
 import random
 
 
+class GameException(Exception):
+    pass
+
+
 def main():
     print('The carrot in the box game!')
     print('This is a bluffing game for two human players. Each player has a box.')
@@ -78,7 +82,7 @@ def manage_players_roles(move_bluff_turn, move_guess_turn, player_one, player_tw
     elif move_bluff_turn == 2 and move_guess_turn == 1:
         return player_two, player_one
     else:
-        raise Exception
+        raise GameException('Something is wrong in the game! We will fix it asap!')
 
 
 def guess_if_carrot_inside(is_box_with_carrot, score, player_to_guess, player_to_bluff):
@@ -100,6 +104,8 @@ def change_moves_turns(move_bluff_turn, move_guess_turn):
         return 2, 1
     elif move_bluff_turn == 2 and move_guess_turn == 1:
         return 1, 2
+    else:
+        raise GameException('Something is wrong in the game! We will fix it asap!')
 
 
 def resume_game(score, player_one, player_two):
