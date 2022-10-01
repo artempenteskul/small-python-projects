@@ -18,6 +18,10 @@ WHEN = ['Soon', 'This Year', 'Later Today', 'RIGHT NOW', 'Next Week']
 WEBSITES = ['Facebuuk', 'Googles', 'Facesbook', 'Tweedie', 'Pastagram']
 
 
+class TemplateDoesNotExist(Exception):
+    pass
+
+
 def main():
     print('The Clickbait Headline Generator!')
     print()
@@ -52,7 +56,7 @@ def main():
         elif clickbait_type == 8:
             headline = generate_job_automated_headline()
         else:
-            raise Exception
+            raise TemplateDoesNotExist(f'Template with number {clickbait_type} does not exist!')
 
         print(headline)
     print()
