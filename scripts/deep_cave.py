@@ -12,8 +12,8 @@ def main():
     print('Press Ctrl-C to stop ...')
     print()
 
-    left_width = 20
-    gap_width = 10
+    left_width = 40
+    gap_width = 20
 
     while True:
         right_width = WIDTH - left_width - gap_width
