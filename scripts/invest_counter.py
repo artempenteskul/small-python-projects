@@ -29,10 +29,10 @@ def main():
         capital += (annual_earnings + annual_dividends)
 
         print(f'--- YEAR #{i+1} ---')
-        print(f'Start year capital: ${start_year_capital:.2f}.')
-        print(f'Annual earnings: ${annual_earnings:.2f}.')
-        print(f'Annual dividends: ${annual_dividends:.2f}.')
-        print(f'End year capital: ${capital:.2f}.')
+        print(f'Start year capital: ${start_year_capital:.2f}')
+        print(f'Annual earnings: ${annual_earnings:.2f}')
+        print(f'Annual dividends: ${annual_dividends:.2f}')
+        print(f'End year capital: ${capital:.2f}')
 
         capital += annual_replenishment
 
@@ -41,16 +41,15 @@ def main():
 
     print()
 
-    print(f'--- Overall results for {invest_duration:.2f} years ---')
-    print(f'Start capital: ${annual_replenishment:.2f}.')
-    print(f'End capital: ${capital:.2f}.')
-    print(f'Total earnings sum: ${earnings:.2f}.')
-    print(f'Dividends sum: ${dividends:.2f}.')
+    print(f'--- Overall results ---')
+    print(f'Money spent in {invest_duration} years: ${invest_duration * annual_replenishment:.2f}')
+    print(f'End capital: ${capital:.2f}')
+    print(f'Total earnings sum: ${earnings:.2f}')
+    print(f'Dividends sum: ${dividends:.2f}')
 
     print()
 
-    print(f'Money spent: ${invest_duration * annual_replenishment:.2f}.')
-    print(f'Money earned: ${capital - (invest_duration * annual_replenishment):.2f}.')
+    print(f'Money earned: ${capital - (invest_duration * annual_replenishment):.2f}')
 
 
 def get_invest_duration():
