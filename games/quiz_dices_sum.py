@@ -14,7 +14,7 @@ MAX_DICE_VALUE = 6
 
 
 def main():
-    print('The Dice Math Game!')
+    print('The Dices Quiz Sum Game!')
     print('Add up all the numbers displayed on the screen.')
     print(f'You have {QUIZ_DURATION} seconds to answer as many as possible.')
     print(f'You get {REWARD} points for right answer and lose {PENALTY} point for each incorrect answer!')
