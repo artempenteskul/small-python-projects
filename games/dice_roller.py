@@ -7,6 +7,9 @@ def main():
     print('Enter what kind and how many dices to roll.')
     print('The format is the number of dices, followed by "d", followed by the number of sides the dice have.')
     print('You can also add plus or minus adjustment.')
+    print()
+    print('Examples: "3d6", "1d10+2", "2d38-1".')
+    print('QUIT quits the program.')
 
     while True:
         try:
