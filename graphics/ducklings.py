@@ -5,7 +5,7 @@ import random
 
 
 PAUSE = 0.2
-DENSITY = 0.1
+DENSITY = 0.075
 
 DUCKLING_WIDTH = 5
 LEFT = 'left'
