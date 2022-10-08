@@ -18,12 +18,12 @@ CANVAS_WIDTH, CANVAS_HEIGHT = shutil.get_terminal_size()
 CANVAS_WIDTH -= 1
 CANVAS_HEIGHT -= 5
 
-canvas = {}
-cursor_x = 0
-cursor_y = 0
-
 
 def main():
+    canvas = {}
+    cursor_x = 0
+    cursor_y = 0
+
     moves = []
     while True:
         print(get_canvas_string(canvas, cursor_x, cursor_y))
@@ -33,6 +33,65 @@ def main():
         if response == 'Q':
             print('Thanks for playing!')
             sys.exit()
+        elif response == 'H':
+            print('Enter WASD characters to move and draw the line. Try it yourself!')
+            print('You can save the picture entering the F.')
+            input('Press Enter to continue ...')
+            continue
+        elif response == 'C':
+            canvas = {}
+            moves.append('C')
+        elif response == 'F':
+            try:
+                print('Enter the filename to save the picture: ')
+                filename = input('> ')
+
+                if not filename.endswith('.txt'):
+                    filename += '.txt'
+                with open(filename, 'w') as file:
+                    file.write(''.join(moves) + '\n')
+                    file.write(get_canvas_string(canvas, None, None))
+            except Exception as e:
+                print(f'ERROR: Could not save the file due to: {str(e)}')
+
+        for command in response:
+            if command not in ('W', 'A', 'S', 'D'):
+                continue
+
+            moves.append(command)
+
+            if canvas == {}:
+                if command in ('W', 'S'):
+                    canvas[(cursor_x, cursor_y)] = {'W', 'S'}
+                elif command in ('A', 'D'):
+                    canvas[(cursor_x, cursor_y)] = {'A', 'D'}
+
+            if command == 'W' and cursor_y > 0:
+                canvas[(cursor_x, cursor_y)].add(command)
+                cursor_y -= 1
+            elif command == 'S' and cursor_y < CANVAS_HEIGHT - 1:
+                canvas[(cursor_x, cursor_y)].add(command)
+                cursor_y += 1
+            elif command == 'A' and cursor_x > 0:
+                canvas[(cursor_x, cursor_y)].add(command)
+                cursor_x -= 1
+            elif command == 'D' and cursor_x < CANVAS_WIDTH - 1:
+                canvas[(cursor_x, cursor_y)].add(command)
+                cursor_x += 1
+            else:
+                continue
+
+            if (cursor_x, cursor_y) not in canvas:
+                canvas[(cursor_x, cursor_y)] = {}
+
+            if command == 'W':
+                canvas[(cursor_x, cursor_y)].add('S')
+            elif command == 'S':
+                canvas[(cursor_x, cursor_y)].add('W')
+            elif command == 'A':
+                canvas[(cursor_x, cursor_y)].add('D')
+            elif command == 'D':
+                canvas[(cursor_x, cursor_y)].add('A')
 
 
 def get_canvas_string(canvas_data, x, y):
