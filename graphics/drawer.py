@@ -82,7 +82,7 @@ def main():
                 continue
 
             if (cursor_x, cursor_y) not in canvas:
-                canvas[(cursor_x, cursor_y)] = {}
+                canvas[(cursor_x, cursor_y)] = set()
 
             if command == 'W':
                 canvas[(cursor_x, cursor_y)].add('S')
@@ -99,7 +99,7 @@ def get_canvas_string(canvas_data, x, y):
     for row_num in range(CANVAS_HEIGHT):
         for column_num in range(CANVAS_WIDTH):
             if column_num == x and row_num == y:
-                canvas_str += '#'
+                # canvas_str += '#'
                 continue
 
             cell = canvas_data.get((column_num, row_num))
