@@ -49,7 +49,7 @@ def main():
                 if not filename.endswith('.txt'):
                     filename += '.txt'
                 with open(filename, 'w') as file:
-                    file.write(''.join(moves) + '\n')
+                    file.write(''.join(moves) + '\n\n')
                     file.write(get_canvas_string(canvas, None, None))
             except Exception as e:
                 print(f'ERROR: Could not save the file due to: {str(e)}')
@@ -99,7 +99,6 @@ def get_canvas_string(canvas_data, x, y):
     for row_num in range(CANVAS_HEIGHT):
         for column_num in range(CANVAS_WIDTH):
             if column_num == x and row_num == y:
-                # canvas_str += '#'
                 continue
 
             cell = canvas_data.get((column_num, row_num))
