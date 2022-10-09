@@ -10,7 +10,7 @@ def main():
     print('When you see "DRAW!", you have 0.3 seconds to to press Enter.')
     print('But you lose if you press Enter before "DRAW!" appears.')
     print()
-    print('Press Enter to begin ...')
+    input('Press Enter to begin ...')
 
     while True:
         print()
