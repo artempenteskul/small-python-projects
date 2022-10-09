@@ -36,6 +36,11 @@ def main():
             else:
                 print(f'{factor}, ', end='')
 
+        if len(factors) == 2:
+            print('This number is prime!')
+        else:
+            print('This number is composite!')
+
 
 if __name__ == '__main__':
     main()
