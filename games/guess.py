@@ -11,7 +11,7 @@ def main():
     number_of_guesses = get_number_of_guesses()
 
     for i in range(number_of_guesses):
-        print(f'You have {10 - i} guesses left. Take a guess!')
+        print(f'You have {number_of_guesses - i} guesses left. Take a guess!')
         guess = ask_for_guess()
         if guess == secret_num:
             print(f'Yay! You guessed the number! It was {secret_num}!')
@@ -39,6 +39,7 @@ def get_number_of_guesses():
     response = ''
     while response not in range(1, 10):
         print('How many guesses do you wanna have? (from 1 to 10): ')
+        response = input('> ')
         if not response.isdecimal():
             continue
 
