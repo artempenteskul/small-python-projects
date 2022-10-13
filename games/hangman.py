@@ -17,17 +17,14 @@ def main():
 
 
 def get_rounds_number():
-    print('At first, we need to decide how many you want to play: ')
-    response = input('> ')
+    print('At first, we need to decide how many you want to play: (Q to quit)')
 
-    while not response.isdecimal() and int(response) > 0:
-        if response.lower().startswith('q'):
-            sys.exit()
-
-        print('You need to enter how many rounds do you wanna play:  (Q to quit)')
+    while True:
         response = input('> ')
+        if response.isdecimal() and int(response) > 0:
+            return int(response)
 
-    return int(response)
+        print('You need to enter how many rounds do you wanna play: (Q to quit)')
 
 
 def clear_screen():
