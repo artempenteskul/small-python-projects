@@ -12,8 +12,19 @@ def main():
     print('By default, you have 10 attempts to guess the word.')
     print()
 
+    player_1 = get_player_name(1)
+    player_2 = get_player_name(2)
+
+    score = {player_1: 0, player_2: 0}
+
     number_of_rounds = get_rounds_number()
     number_of_games = number_of_rounds * 2
+
+
+def get_player_name(player_number):
+    print(f'Player {player_number}, enter your name: ')
+    name = input('> ')
+    return name
 
 
 def get_rounds_number():
