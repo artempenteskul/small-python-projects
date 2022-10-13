@@ -43,6 +43,15 @@ def main():
         category = get_word_category()
         word = get_word(category)
 
+        print()
+        input('Press Enter to clear the screen ...')
+        clear_screen()
+
+        print(f'It\'s time for {move_guess_turn} to guess the word.')
+        print()
+
+        guess_the_word(word, category)
+
 
 def get_players_names():
     print('Human Player 1, enter your name: ')
@@ -83,7 +92,7 @@ def get_word_category():
 
 
 def get_word(category):
-    print(f'Enter the word for, your category for this round is {category}: ')
+    print(f'Enter the word, your category for this round is {category}: ')
     word = input('> ')
     while True:
         response = input(f'Your word for category {category} is {word}, is it right? Y/N: ')
@@ -94,6 +103,21 @@ def get_word(category):
             word = input('> ')
         else:
             continue
+
+
+def guess_the_word(word, category):
+
+    guessed_letters = []
+
+    print(f'The category of the word is {category}.')
+    print(f'Your current progress: {check_the_word(word, guessed_letters)}')
+
+
+def check_the_word(word, guessed_letters):
+    if len(guessed_letters) == 0:
+        return '_ ' * len(word)
+
+
 
 
 def clear_screen():
