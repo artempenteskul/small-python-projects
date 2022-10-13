@@ -12,8 +12,7 @@ def main():
     print('By default, you have 10 attempts to guess the word.')
     print()
 
-    player_1 = get_player_name(1)
-    player_2 = get_player_name(2)
+    player_1, player_2 = get_players_names()
     print()
 
     score = {player_1: 0, player_2: 0}
@@ -45,10 +44,17 @@ def main():
         word = get_word(category)
 
 
-def get_player_name(player_number):
-    print(f'Player {player_number}, enter your name: ')
-    name = input('> ')
-    return name
+def get_players_names():
+    print('Human Player 1, enter your name: ')
+    player_1 = input('> ')
+    print('Human Player 2, enter your name: ')
+    player_2 = input('> ')
+
+    while player_1 == player_2:
+        print(f'Name {player_1} is already taken. Choose another: ')
+        player_2 = input('> ')
+
+    return player_1, player_2
 
 
 def get_rounds_number():
