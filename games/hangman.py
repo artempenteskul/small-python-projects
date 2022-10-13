@@ -14,11 +14,28 @@ def main():
 
     player_1 = get_player_name(1)
     player_2 = get_player_name(2)
+    print()
 
     score = {player_1: 0, player_2: 0}
 
     number_of_rounds = get_rounds_number()
     number_of_games = number_of_rounds * 2
+
+    print()
+    print(f'MATCH: {player_1} vs {player_2}')
+    print()
+
+    move_guess_turn = player_1
+    move_think_turn = player_2
+
+    for game in range(number_of_games):
+        print(f'GAME: {game + 1}')
+        print(f'{move_think_turn} - your turn to think of a word!')
+        print(f'{move_guess_turn} - your turn to guess the word!')
+
+        print()
+        input('Press enter to continue ...')
+        print()
 
 
 def get_player_name(player_number):
