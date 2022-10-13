@@ -1,6 +1,8 @@
 import sys
+import time
 
 
+REWARD = 5
 NUMBER_OF_ATTEMPTS = 10
 
 
@@ -50,7 +52,7 @@ def main():
         print(f'It\'s time for {move_guess_turn} to guess the word.')
         print()
 
-        guess_the_word(word, category)
+        guess_the_word(word, category, move_guess_turn, move_think_turn, score)
 
 
 def get_players_names():
@@ -105,12 +107,60 @@ def get_word(category):
             continue
 
 
-def guess_the_word(word, category):
+def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
 
     guessed_letters = []
+    word_guess_progress = check_the_word(word, guessed_letters)
 
     print(f'The category of the word is {category}.')
-    print(f'Your current progress: {check_the_word(word, guessed_letters)}')
+    print(f'Your current progress: {word_guess_progress}')
+    print()
+
+    for i in range(NUMBER_OF_ATTEMPTS):
+        print(f'Guess #{i+1}')
+        print()
+
+        guess, is_full_word = get_guess()
+
+        if is_full_word:
+            print(f'Your guess of full word: {guess}.')
+            print()
+            print('Comparing to the actual word ...')
+            time.sleep(2)
+
+            if word == guess:
+                print(f'You are right! You earn {REWARD} points! The word was: {word}.')
+                score[move_guess_turn] += REWARD
+                return ...
+            else:
+                print(f'You lose this round! Your opponent earns {REWARD} points! The word was: {word}.')
+                score[move_think_turn] += REWARD
+                return ...
+
+        else:
+            guessed_letters.append(guess)
+            word_guess_progress = check_the_word(word, guessed_letters)
+            print(f'Current word guess progress: {word_guess_progress}')
+
+
+def get_guess():
+    print('Are you ready to guess full word? Y/N: ')
+    response = input('> ')
+    while True:
+        if response.lower().startswith('y'):
+            print('Your guess of full word: ')
+            word = input('> ').upper()
+            return word, True
+        elif response.lower().startswith('n'):
+            print('Your letter: ')
+            letter = input('> ').upper()
+            while len(letter) != 1:
+                print('You entered more than one letter, you need to enter only one: ')
+                letter = input('> ').upper()
+            return letter, False
+        else:
+            print('Are you ready to guess full word? Y/N: ')
+            response = input('> ')
 
 
 def check_the_word(word, guessed_letters):
