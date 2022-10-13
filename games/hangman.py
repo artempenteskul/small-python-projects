@@ -33,7 +33,7 @@ def main():
         print(f'{move_guess_turn} - your turn to guess the word!')
 
         print()
-        print(f'{move_guess_turn} should close eyes.')
+        print(f'{move_guess_turn} should close eyes!')
         print(f'{move_think_turn} will be asked to enter the word and its category.')
 
         print()
@@ -55,13 +55,13 @@ def main():
 
 def get_players_names():
     print('Human Player 1, enter your name: ')
-    player_1 = input('> ')
+    player_1 = input('> ').upper()
     print('Human Player 2, enter your name: ')
-    player_2 = input('> ')
+    player_2 = input('> ').upper()
 
     while player_1 == player_2:
         print(f'Name {player_1} is already taken. Choose another: ')
-        player_2 = input('> ')
+        player_2 = input('> ').upper()
 
     return player_1, player_2
 
@@ -79,28 +79,28 @@ def get_rounds_number():
 
 def get_word_category():
     print('Enter the category for the word: ')
-    category = input('> ')
+    category = input('> ').upper()
     while True:
         response = input(f'Your category is {category}, is it right? Y/N: ')
         if response.lower().startswith('y'):
             return category
         elif response.lower().startswith('n'):
             print('Enter correct category: ')
-            category = input('> ')
+            category = input('> ').upper()
         else:
             continue
 
 
 def get_word(category):
     print(f'Enter the word, your category for this round is {category}: ')
-    word = input('> ')
+    word = input('> ').upper()
     while True:
         response = input(f'Your word for category {category} is {word}, is it right? Y/N: ')
         if response.lower().startswith('y'):
             return word
         elif response.lower().startswith('n'):
             print('Enter correct word: ')
-            word = input('> ')
+            word = input('> ').upper()
         else:
             continue
 
@@ -116,8 +116,6 @@ def guess_the_word(word, category):
 def check_the_word(word, guessed_letters):
     if len(guessed_letters) == 0:
         return '_ ' * len(word)
-
-
 
 
 def clear_screen():
