@@ -53,6 +53,9 @@ def main():
         print()
 
         guess_the_word(word, category, move_guess_turn, move_think_turn, score)
+        clear_screen()
+
+        move_guess_turn, move_think_turn = move_think_turn, move_guess_turn
 
 
 def get_players_names():
@@ -151,7 +154,6 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
                 print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
                 score[move_think_turn] += REWARD
                 return
-
 
     print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
     score[move_think_turn] += REWARD
