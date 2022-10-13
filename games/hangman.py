@@ -31,8 +31,9 @@ def main():
 
     for game in range(number_of_games):
         print(f'GAME: {game + 1}')
-        print(f'{move_think_turn} - your turn to think of a word!')
+        print()
         print(f'{move_guess_turn} - your turn to guess the word!')
+        print(f'{move_think_turn} - your turn to think of a word!')
 
         print()
         print(f'{move_guess_turn} should close eyes!')
@@ -53,6 +54,9 @@ def main():
         print()
 
         guess_the_word(word, category, move_guess_turn, move_think_turn, score)
+
+        print()
+        input('Press Enter to begin next game ...')
         clear_screen()
 
         move_guess_turn, move_think_turn = move_think_turn, move_guess_turn
@@ -72,7 +76,7 @@ def get_players_names():
 
 
 def get_rounds_number():
-    print('At first, we need to decide how many you want to play: (Q to quit)')
+    print('At first, we need to decide how many rounds you want to play: (Q to quit)')
 
     while True:
         response = input('> ')
@@ -158,6 +162,7 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
                 return
 
             input('Press Enter to take another guess ...')
+            print()
 
     print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
     score[move_think_turn] += REWARD
