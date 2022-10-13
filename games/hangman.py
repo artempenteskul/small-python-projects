@@ -86,7 +86,8 @@ def get_word_category():
     print('Enter the category for the word: ')
     category = input('> ').upper()
     while True:
-        response = input(f'Your category is {category}, is it right? Y/N: ')
+        print(f'Your category is {category}, is it right? Y/N: ')
+        response = input('> ')
         if response.lower().startswith('y'):
             return category
         elif response.lower().startswith('n'):
@@ -100,7 +101,8 @@ def get_word(category):
     print(f'Enter the word, your category for this round is {category}: ')
     word = input('> ').upper()
     while True:
-        response = input(f'Your word for category {category} is {word}, is it right? Y/N: ')
+        print(f'Your word for category {category} is {word}, is it right? Y/N: ')
+        response = input('> ')
         if response.lower().startswith('y'):
             return word
         elif response.lower().startswith('n'):
@@ -120,7 +122,7 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
     print()
 
     for i in range(NUMBER_OF_ATTEMPTS):
-        print(f'Guess #{i+1}')
+        print(f'GUESS #{i+1}')
         print()
 
         guess, is_full_word = get_guess()
@@ -143,17 +145,19 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
         else:
             guessed_letters.append(guess)
             word_guess_progress = check_the_word(word, guessed_letters)
+            print('Looking for your letter in word ...')
+            time.sleep(2)
             print()
+
             print(f'Current word guess progress: {word_guess_progress}')
+            print()
 
             if word_guess_progress.replace(' ', '') == word:
-                print(f'You are right! You earn {REWARD} points! The word was: {word}.')
+                print(f'Seems that you have already won! You earn {REWARD} points! The word was: {word}.')
                 score[move_guess_turn] += REWARD
                 return
-            else:
-                print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
-                score[move_think_turn] += REWARD
-                return
+
+            input('Press Enter to take another guess ...')
 
     print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
     score[move_think_turn] += REWARD
@@ -185,7 +189,7 @@ def check_the_word(word, guessed_letters):
         return '_ ' * len(word)
 
     word_progress = []
-    word_letters = word.split()
+    word_letters = list(word)
 
     for letter in word_letters:
         if letter in guessed_letters:
