@@ -124,23 +124,38 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
 
         if is_full_word:
             print(f'Your guess of full word: {guess}.')
-            print()
             print('Comparing to the actual word ...')
+            print()
             time.sleep(2)
 
             if word == guess:
                 print(f'You are right! You earn {REWARD} points! The word was: {word}.')
                 score[move_guess_turn] += REWARD
-                return ...
+                return
             else:
-                print(f'You lose this round! Your opponent earns {REWARD} points! The word was: {word}.')
+                print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
                 score[move_think_turn] += REWARD
-                return ...
+                return
 
         else:
             guessed_letters.append(guess)
             word_guess_progress = check_the_word(word, guessed_letters)
+            print()
             print(f'Current word guess progress: {word_guess_progress}')
+
+            if word_guess_progress.replace(' ', '') == word:
+                print(f'You are right! You earn {REWARD} points! The word was: {word}.')
+                score[move_guess_turn] += REWARD
+                return
+            else:
+                print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
+                score[move_think_turn] += REWARD
+                return
+
+
+    print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
+    score[move_think_turn] += REWARD
+    return
 
 
 def get_guess():
@@ -166,6 +181,17 @@ def get_guess():
 def check_the_word(word, guessed_letters):
     if len(guessed_letters) == 0:
         return '_ ' * len(word)
+
+    word_progress = []
+    word_letters = word.split()
+
+    for letter in word_letters:
+        if letter in guessed_letters:
+            word_progress.append(letter)
+        else:
+            word_progress.append('_')
+
+    return ' '.join(word_progress)
 
 
 def clear_screen():
