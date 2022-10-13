@@ -34,8 +34,15 @@ def main():
         print(f'{move_guess_turn} - your turn to guess the word!')
 
         print()
+        print(f'{move_guess_turn} should close eyes.')
+        print(f'{move_think_turn} will be asked to enter the word and its category.')
+
+        print()
         input('Press enter to continue ...')
         print()
+
+        category = get_word_category()
+        word = get_word(category)
 
 
 def get_player_name(player_number):
@@ -53,6 +60,34 @@ def get_rounds_number():
             return int(response)
 
         print('You need to enter how many rounds do you wanna play: (Q to quit)')
+
+
+def get_word_category():
+    print('Enter the category for the word: ')
+    category = input('> ')
+    while True:
+        response = input(f'Your category is {category}, is it right? Y/N: ')
+        if response.lower().startswith('y'):
+            return category
+        elif response.lower().startswith('n'):
+            print('Enter correct category: ')
+            category = input('> ')
+        else:
+            continue
+
+
+def get_word(category):
+    print(f'Enter the word for, your category for this round is {category}: ')
+    word = input('> ')
+    while True:
+        response = input(f'Your word for category {category} is {word}, is it right? Y/N: ')
+        if response.lower().startswith('y'):
+            return word
+        elif response.lower().startswith('n'):
+            print('Enter correct word: ')
+            word = input('> ')
+        else:
+            continue
 
 
 def clear_screen():
