@@ -69,13 +69,13 @@ def main():
 
 def get_players_names():
     print('Human Player 1, enter your name: ')
-    player_1 = input('> ').upper()
+    player_1 = input('> ').upper().rstrip()
     print('Human Player 2, enter your name: ')
-    player_2 = input('> ').upper()
+    player_2 = input('> ').upper().rstrip()
 
     while player_1 == player_2:
         print(f'Name {player_1} is already taken. Choose another: ')
-        player_2 = input('> ').upper()
+        player_2 = input('> ').upper().rstrip()
 
     return player_1, player_2
 
@@ -93,30 +93,30 @@ def get_rounds_number():
 
 def get_word_category():
     print('Enter the category for the word: ')
-    category = input('> ').upper()
+    category = input('> ').upper().rstrip()
     while True:
         print(f'Your category is {category}, is it right? Y/N: ')
-        response = input('> ')
+        response = input('> ').rstrip()
         if response.lower().startswith('y'):
             return category
         elif response.lower().startswith('n'):
             print('Enter correct category: ')
-            category = input('> ').upper()
+            category = input('> ').upper().rstrip()
         else:
             continue
 
 
 def get_word(category):
     print(f'Enter the word, your category for this round is {category}: ')
-    word = input('> ').upper()
+    word = input('> ').upper().rstrip()
     while True:
         print(f'Your word for category {category} is {word}, is it right? Y/N: ')
-        response = input('> ')
+        response = input('> ').rstrip()
         if response.lower().startswith('y'):
             return word
         elif response.lower().startswith('n'):
             print('Enter correct word: ')
-            word = input('> ').upper()
+            word = input('> ').upper().rstrip()
         else:
             continue
 
@@ -134,7 +134,7 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
         print(f'GUESS #{i+1}')
         print()
 
-        guess, is_full_word = get_guess()
+        guess, is_full_word = get_guess(guessed_letters)
 
         if is_full_word:
             print(f'Your guess of full word: {guess}.')
@@ -158,6 +158,7 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
             time.sleep(2)
             print()
 
+            print(f'The category of the word is {category}.')
             print(f'Current word guess progress: {word_guess_progress}')
             print()
 
@@ -174,7 +175,7 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
     return
 
 
-def get_guess():
+def get_guess(guessed_letters):
     print('Are you ready to guess full word? Y/N: ')
     response = input('> ')
     while True:
@@ -183,12 +184,18 @@ def get_guess():
             word = input('> ').upper()
             return word, True
         elif response.lower().startswith('n'):
-            print('Your letter: ')
+            if len(guessed_letters) == 0:
+                print('Your first letter: ')
+            else:
+                print(f'Already used letters: {guessed_letters}, your next letter: ')
             letter = input('> ').upper()
-            while len(letter) != 1:
-                print('You entered more than one letter, you need to enter only one: ')
+            while letter in guessed_letters or len(letter) != 1:
+                if letter in guessed_letters:
+                    print(f'You have already tried this letter, used letters: {guessed_letters}: ')
+                else:
+                    print('You have entered more than one letter, you need to enter only one: ')
                 letter = input('> ').upper()
-            return letter, False
+                return letter, False
         else:
             print('Are you ready to guess full word? Y/N: ')
             response = input('> ')
