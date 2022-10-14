@@ -10,8 +10,8 @@ def main():
     print('The Hangman Game!')
     print('It\'s a game for two players.')
     print('The goal of the game is to guess word, which another player thought of.')
-    print('You can guess it by a letters (like in usual hangman game), and you\'l also have the category of word.')
-    print('By default, you have 10 attempts to guess the word.')
+    print('You can guess it by a letter (like in usual hangman game), and you\'ll also have the category of word.')
+    print('You have 10 attempts to guess the word.')
     print()
 
     player_1, player_2 = get_players_names()
@@ -60,6 +60,13 @@ def main():
         clear_screen()
 
         move_guess_turn, move_think_turn = move_think_turn, move_guess_turn
+
+    print()
+    print('Counting the score ...')
+    time.sleep(2)
+    print()
+
+    print(f'FINAL SCORE: {player_1}({score[player_1]}) - {player_2}({score[player_2]})')
 
 
 def get_players_names():
