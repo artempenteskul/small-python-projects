@@ -64,6 +64,7 @@ def main():
     time.sleep(2)
     print()
 
+    print(f'ROUNDS PLAYED: {number_of_rounds}')
     print(f'FINAL SCORE: {player_1}({score[player_1]}) - {player_2}({score[player_2]})')
 
 
@@ -138,6 +139,7 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
 
         if is_full_word:
             print(f'Your guess of full word: {guess}.')
+            print()
             print('Comparing to the actual word ...')
             print()
             time.sleep(2)
@@ -195,7 +197,7 @@ def get_guess(guessed_letters):
                 else:
                     print('You have entered more than one letter, you need to enter only one: ')
                 letter = input('> ').upper()
-                return letter, False
+            return letter, False
         else:
             print('Are you ready to guess full word? Y/N: ')
             response = input('> ')
