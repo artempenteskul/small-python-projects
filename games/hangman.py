@@ -1,8 +1,6 @@
-import sys
 import time
 
 
-REWARD = 5
 NUMBER_OF_ATTEMPTS = 10
 
 
@@ -145,12 +143,12 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
             time.sleep(2)
 
             if word == guess:
-                print(f'You are right! You earn {REWARD} points! The word was: {word}.')
-                score[move_guess_turn] += REWARD
+                print(f'You are right! You earn {NUMBER_OF_ATTEMPTS - i} points! The word was: {word}.')
+                score[move_guess_turn] += NUMBER_OF_ATTEMPTS - i
                 return
             else:
-                print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
-                score[move_think_turn] += REWARD
+                print(f'You lose this game! Your opponent earns {NUMBER_OF_ATTEMPTS} points! The word was: {word}.')
+                score[move_think_turn] += NUMBER_OF_ATTEMPTS
                 return
 
         else:
@@ -164,15 +162,15 @@ def guess_the_word(word, category, move_guess_turn, move_think_turn, score):
             print()
 
             if word_guess_progress.replace(' ', '') == word:
-                print(f'Seems that you have already won! You earn {REWARD} points! The word was: {word}.')
-                score[move_guess_turn] += REWARD
+                print(f'Seems that you have already won! You earn {NUMBER_OF_ATTEMPTS - i} points! The word was: {word}.')
+                score[move_guess_turn] += NUMBER_OF_ATTEMPTS - i
                 return
 
             input('Press Enter to take another guess ...')
             print()
 
-    print(f'You lose this game! Your opponent earns {REWARD} points! The word was: {word}.')
-    score[move_think_turn] += REWARD
+    print(f'You lose this game! Your opponent earns {NUMBER_OF_ATTEMPTS} points! The word was: {word}.')
+    score[move_think_turn] += NUMBER_OF_ATTEMPTS
     return
 
 
