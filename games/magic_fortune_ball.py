@@ -44,10 +44,7 @@ def main():
 
 def slow_space_print(text, interval=0.1):
     for char in text:
-        if char == 'I':
-            print('i ', end='', flush=True)
-        else:
-            print(f'{char.upper()} ', end='', flush=True)
+        print(f'{char.upper()} ', end='', flush=True)
 
         time.sleep(interval)
 
