@@ -21,7 +21,7 @@ def main():
 
     for i in range(1_000_000):
         if time.time() > last_print_time + 1:
-            print(f'{i // 1_000_000}% done ...')
+            print(f'{round(i / 10_000, 1)}% done ...')
             last_print_time = time.time()
 
         total = 0
@@ -34,7 +34,7 @@ def main():
     print('TOTAL - ROLLS - PERCENTAGE')
     for i in range(number_of_dices, (number_of_dices * 6) + 1):
         rolls = RESULTS[i]
-        percentage = round(rolls / 1_000_000, 2)
+        percentage = round(rolls / 10_000, 2)
         print(f'{i} - {rolls} rolls - {percentage}%')
 
 
