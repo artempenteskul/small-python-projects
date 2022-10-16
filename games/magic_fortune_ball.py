@@ -30,7 +30,7 @@ ANSWERS = [
 
 
 def main():
-    slow_space_print('The Magic Fortuna Ball Program!')
+    slow_space_print('The Magic Fortune Ball Program!')
     time.sleep(1)
     slow_space_print('Ask me your YES/NO question ...')
     input('> ')
