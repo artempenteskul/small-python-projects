@@ -128,7 +128,7 @@ def show_doors(doors):
         if door_n == len(doors) - 1:
             print(f'{door_value.upper()}')
         else:
-            print(f'{door_value.upper()} -- ')
+            print(f'{door_value.upper()} -- ', end='', flush=True)
 
 
 if __name__ == '__main__':
