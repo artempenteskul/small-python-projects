@@ -28,7 +28,8 @@ def main():
 
     while True:
         door_with_car = random.randint(1, 3)
-        print_doors(ALL_CLOSED)
+        show_doors(ALL_CLOSED)
+        print()
         while True:
             print('Pick a door 1, 2, or 3 (or "q" to stop): ')
             response = input('> ').lower()
@@ -39,6 +40,8 @@ def main():
             if response in ('1', '2', '3'):
                 break
 
+        print()
+
         door_pick = int(response)
 
         while True:
@@ -47,14 +50,15 @@ def main():
                 break
 
         if door_with_goat == 1:
-            print_doors(FIRST_GOAT)
+            show_doors(FIRST_GOAT)
         elif door_with_goat == 2:
-            print_doors(SECOND_GOAT)
+            show_doors(SECOND_GOAT)
         elif door_with_goat == 3:
-            print_doors(THIRD_CAR)
+            show_doors(THIRD_GOAT)
 
         print()
         print(f'Door {door_with_goat} contains a goat!')
+        print()
 
         while True:
             print('Do you want to swap you choice? Y/N: ')
@@ -77,14 +81,14 @@ def main():
                 door_pick = 1
 
         if door_with_car == 1:
-            print_doors(FIRST_CAR)
+            show_doors(FIRST_CAR)
         elif door_with_car == 2:
             print(SECOND_CAR)
         elif door_with_goat == 3:
             print(THIRD_CAR)
 
         print()
-        print(f'Door {door_with_car} has the car!')
+        print(f'Door {door_with_car} has the car!', end=' ')
 
         if door_pick == door_with_car:
             print('You won!')
@@ -112,16 +116,19 @@ def main():
             stay_success = 0.0
 
         print()
-        print(f'Swapping results: {swap_wins} wins, {swap_losses} losses, success rate - {swap_success}%')
+        print(f'Swap results: {swap_wins} wins, {swap_losses} losses, success rate - {swap_success}%')
         print(f'Stay results: {stay_wins} wins, {stay_losses} losses, success rate - {stay_success}%')
         print()
 
         input('Press Enter to repeat the experiment and get more accurate results ...')
 
 
-def print_doors(doors):
-    for door in doors:
-        print(door.upper(), end='  ', flush=True)
+def show_doors(doors):
+    for door_n, door_value in enumerate(doors):
+        if door_n == len(doors) - 1:
+            print(f'{door_value.upper()}')
+        else:
+            print(f'{door_value.upper()} -- ')
 
 
 if __name__ == '__main__':
