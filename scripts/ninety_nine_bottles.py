@@ -2,7 +2,7 @@ import sys
 import time
 
 
-PAUSE = 0.1
+PAUSE = 1.5
 
 
 def main():
