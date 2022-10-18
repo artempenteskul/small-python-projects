@@ -2,13 +2,15 @@ import sys
 import time
 
 
-PAUSE = 2
+PAUSE = 0.1
 
 
 def main():
     print('Ninety-Nine Bottles Song!')
+    print('You can actually sing with the computer ...')
     print()
     print('Press Ctrl-C to exit ...')
+    print()
 
     time.sleep(2)
 
@@ -23,7 +25,7 @@ def main():
             print(f'Take one round, pass it around,')
             time.sleep(PAUSE)
             bottles -= 1
-            print(f'{bottles} bottles of the milk on the wall!')
+            print('1 bottle of the milk on the wall!') if bottles == 1 else print(f'{bottles} bottles of the milk on the wall!')
             time.sleep(PAUSE)
             print()
 
