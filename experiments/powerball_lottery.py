@@ -70,6 +70,7 @@ def main():
         break
 
     price = f'${plays_num * 2}'
+    print()
     print(f'It will cost you {price} to play {plays_num} games. But don\'t worry, maybe you\'ll win!')
     print()
     input('Press Enter to begin ...')
@@ -92,12 +93,13 @@ def main():
 
         if set(numbers) == set(winning_numbers) and powerball == winning_powerball:
             print()
-            print('You have won the Powerball Lottery! Congratulations!')
+            print(f'Congratulations! You have won the Powerball Lottery on the {i + 1} attempt!')
             print('You would be a billionare if this was real!')
             break
         else:
             print(' You lost.')
 
+    print()
     print(f'You have wasted {price}. Thanks for playing!')
 
 
