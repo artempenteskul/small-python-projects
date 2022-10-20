@@ -33,6 +33,8 @@ def main():
 
         break
 
+    powerball = 0
+
     while True:
         print('Enter the powerball number from 1 to 26 (e.g. 13): ')
         response = input('> ')
@@ -49,21 +51,54 @@ def main():
 
         break
 
+    plays_num = 0
+
     while True:
         print('How many times do you want to play? (max 1_000_000): ')
         response = input('> ')
 
         try:
-            play_num = int(response)
+            plays_num = int(response)
         except ValueError:
             print('Please enter a number, like 3, 15, or 22000.')
             continue
 
-        if not 1 <= play_num <= 1_000_000:
+        if not 1 <= plays_num <= 1_000_000:
             print('You can play between 1 and 1_000_000 times.')
             continue
 
         break
+
+    price = f'${plays_num * 2}'
+    print(f'It will cost you {price} to play {plays_num} games. But don\'t worry, maybe you\'ll win!')
+    print()
+    input('Press Enter to begin ...')
+    print()
+
+    possible_numbers = list(range(1, 70))
+    for i in range(plays_num):
+        random.shuffle(possible_numbers)
+        winning_numbers = possible_numbers[:5]
+        winning_powerball = random.randint(1, 26)
+
+        all_winning_numbers = ''
+        for num in winning_numbers:
+            all_winning_numbers += f'{num} '
+
+        all_winning_numbers += f'and {winning_powerball}'
+
+        print(f'The winning numbers are: ', end='')
+        print(all_winning_numbers.ljust(21), end='')
+
+        if set(numbers) == set(winning_numbers) and powerball == winning_powerball:
+            print()
+            print('You have won the Powerball Lottery! Congratulations!')
+            print('You would be a billionare if this was real!')
+            break
+        else:
+            print(' You lost.')
+
+    print(f'You have wasted {price}. Thanks for playing!')
 
 
 if __name__ == '__main__':
