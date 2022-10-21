@@ -37,7 +37,6 @@ def main():
 
         player_move = RPS.get(player_move)
         print(f'{player_move} versus ...')
-        print()
 
         time.sleep(0.25)
         print('1...')
@@ -49,27 +48,22 @@ def main():
 
         computer_move = random.choice(list(RPS.values()))
         print(computer_move)
+        print()
         time.sleep(0.5)
 
         if player_move == computer_move:
             print('It\'s a tie!')
             ties += 1
-        elif player_move == 'ROCK' and computer_move == 'SCISSORS':
+        elif (player_move == 'ROCK' and computer_move == 'SCISSORS'
+              or player_move == 'SCISSORS' and computer_move == 'PAPER'
+              or player_move == 'PAPER' and computer_move == 'ROCK'):
+            print()
             print('You win!')
             wins += 1
-        elif player_move == 'SCISSORS' and computer_move == 'PAPER':
-            print('You win!')
-            wins += 1
-        elif player_move == 'PAPER' and computer_move == 'ROCK':
-            print('You win!')
-            wins += 1
-        elif player_move == 'SCISSORS' and computer_move == 'ROCK':
-            print('You lose!')
-            losses += 1
-        elif player_move == 'PARER' and computer_move == 'SCISSORS':
-            print('You lose!')
-            losses += 1
-        elif player_move == 'ROCK' and computer_move == 'PAPER':
+        elif (player_move == 'SCISSORS' and computer_move == 'ROCK'
+              or player_move == 'PARER' and computer_move == 'SCISSORS'
+              or player_move == 'ROCK' and computer_move == 'PAPER'):
+            print()
             print('You lose!')
             losses += 1
 
