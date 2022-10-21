@@ -30,6 +30,7 @@ def main():
         while True:
             print('Enter your move (R)ock, P(aper), S(cissors) or Q(uit): ')
             player_move = input('> ').upper().rstrip()
+            print()
 
             if player_move == 'Q':
                 print('Thanks for playing!')
@@ -64,18 +65,17 @@ def main():
               or player_move == SCISSORS and computer_move == PAPER
               or player_move == PAPER and computer_move == ROCK):
 
-            print()
-            print('You win')
+            print('You win!')
             wins += 1
 
         elif (player_move == PAPER and computer_move == SCISSORS or
               player_move == SCISSORS and computer_move == ROCK or
               player_move == ROCK and computer_move == PAPER):
 
-            print()
-            print('You lose')
+            print('You lose!')
             losses += 1
 
+        print()
         print(f'{wins} Wins - {losses} Losses - {ties} Ties')
         print()
 
