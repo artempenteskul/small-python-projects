@@ -3,10 +3,15 @@ import time
 import random
 
 
+ROCK = 'ROCK'
+PAPER = 'PAPER'
+SCISSORS = 'SCISSORS'
+
+
 RPS = {
-    'R': 'ROCK',
-    'P': 'PAPER',
-    'S': 'SCISSORS'
+    'R': ROCK,
+    'P': PAPER,
+    'S': SCISSORS
 }
 
 
@@ -24,7 +29,7 @@ def main():
     while True:
         while True:
             print('Enter your move (R)ock, P(aper), S(cissors) or Q(uit): ')
-            player_move = input('> ').upper()
+            player_move = input('> ').upper().rstrip()
 
             if player_move == 'Q':
                 print('Thanks for playing!')
@@ -54,20 +59,22 @@ def main():
         if player_move == computer_move:
             print('It\'s a tie!')
             ties += 1
-        elif (player_move == 'ROCK' and computer_move == 'SCISSORS'
-              or player_move == 'SCISSORS' and computer_move == 'PAPER'
-              or player_move == 'PAPER' and computer_move == 'ROCK'):
-            print()
-            print('You win!')
-            wins += 1
-        elif (player_move == 'SCISSORS' and computer_move == 'ROCK'
-              or player_move == 'PARER' and computer_move == 'SCISSORS'
-              or player_move == 'ROCK' and computer_move == 'PAPER'):
-            print()
-            print('You lose!')
-            losses += 1
 
-        print()
+        elif (player_move == ROCK and computer_move == SCISSORS
+              or player_move == SCISSORS and computer_move == PAPER
+              or player_move == PAPER and computer_move == ROCK):
+
+            print()
+            print('You win')
+            wins += 1
+
+        elif (player_move == PAPER and computer_move == SCISSORS or
+              player_move == SCISSORS and computer_move == ROCK or
+              player_move == ROCK and computer_move == PAPER):
+
+            print()
+            print('You lose')
+            losses += 1
 
         print(f'{wins} Wins - {losses} Losses - {ties} Ties')
         print()
