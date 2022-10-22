@@ -1,4 +1,5 @@
 import sys
+import time
 import random
 import pyperclip
 
@@ -27,6 +28,8 @@ def main():
         print('Please specify the key to use.', end=' ')
         if mode == 'encrypt':
             print('Or enter RANDOM to get already generated key.')
+        else:
+            print()
 
         response = input('> ').upper()
         if response == 'RANDOM':
@@ -46,7 +49,18 @@ def main():
     elif mode == 'decrypt':
         translated = decrypt_message(message, key)
     else:
-        raise Exception
+        raise Exception('Unknown mode for the script!')
+
+    print()
+    if len(message) > 100:
+        print(f'It takes some time to {mode} your message ...')
+        time.sleep(1)
+        print('...')
+        time.sleep(1)
+        print('...')
+        time.sleep(1)
+        print('...')
+        time.sleep(1)
 
     print()
     print(f'The {mode}ed message is: ')
