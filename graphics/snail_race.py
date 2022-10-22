@@ -4,7 +4,7 @@ import random
 
 
 MAX_NUM_SNAILS = 8
-MAX_NAME_LEN = 20
+# MAX_NAME_LEN = 20
 FINISH_LINE = 40
 SPACE = ' '
 
@@ -32,6 +32,8 @@ def main():
                 print('Name cannot be blank. Please enter your name.')
             elif name in snail_names:
                 print('Choose a name that has not already been used.')
+            elif len(name) > 20:
+                print('Name cannot be longer than 20 characters, choose another.')
             else:
                 break
         snail_names.append(name)
@@ -42,7 +44,7 @@ def main():
 
     snail_progress = {}
     for snail_name in snail_names:
-        print(snail_name[:MAX_NAME_LEN])
+        print(snail_name)
         print('@v')
         snail_progress[snail_name] = 0
 
@@ -66,7 +68,7 @@ def main():
 
         for snail_name in snail_names:
             spaces = snail_progress[snail_name]
-            print(f'{SPACE * spaces}{snail_name[:MAX_NAME_LEN]}')
+            print(f'{SPACE * spaces}{snail_name}')
             print(f'{"." * spaces}@v')
 
 
