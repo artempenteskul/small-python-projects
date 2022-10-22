@@ -3,15 +3,15 @@ import time
 import random
 
 
-MAX_NUM_SNAILS = 8
-# MAX_NAME_LEN = 20
-FINISH_LINE = 40
 SPACE = ' '
+SNAIL = '@v'
+FINISH_LINE = 40
+MAX_NUM_SNAILS = 8
 
 
 def main():
-    print('The Snail Race!')
-    print('@v <-- snail')
+    print(f'The Snail Race! {SNAIL}')
+    print(f'{SNAIL} <-- snail')
     print()
 
     while True:
@@ -45,7 +45,7 @@ def main():
     snail_progress = {}
     for snail_name in snail_names:
         print(snail_name)
-        print('@v')
+        print(SNAIL)
         snail_progress[snail_name] = 0
 
     time.sleep(2)
@@ -69,7 +69,7 @@ def main():
         for snail_name in snail_names:
             spaces = snail_progress[snail_name]
             print(f'{SPACE * spaces}{snail_name}')
-            print(f'{"." * spaces}@v')
+            print(f'{"." * spaces}{SNAIL}')
 
 
 if __name__ == '__main__':
