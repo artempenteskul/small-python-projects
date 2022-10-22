@@ -5,7 +5,7 @@ import random
 
 SPACE = ' '
 SNAIL = '@v'
-FINISH_LINE = 40
+FINISH_LINE = random.randint(40, 80)
 MAX_NUM_SNAILS = 8
 
 
@@ -53,9 +53,10 @@ def main():
     while True:
         for i in range(random.randint(1, num_snails // 2)):
             random_snail_name = random.choice(snail_names)
-            snail_progress[random_snail_name] += 1
+            random_snail_progress = random.randint(1, 3)
+            snail_progress[random_snail_name] += random_snail_progress
 
-            if snail_progress[random_snail_name] == FINISH_LINE:
+            if snail_progress[random_snail_name] >= FINISH_LINE:
                 print()
                 print(f'{random_snail_name} has won!')
                 sys.exit()
