@@ -53,5 +53,29 @@ def is_valid_space(board, space):
     return True if board[space] == BLANK and space in ALL_SPACES else False
 
 
+def is_winner(board, player):
+    if ((board['1'] == board['2'] == board['3'] == player) or
+        (board['4'] == board['5'] == board['6'] == player) or
+        (board['7'] == board['8'] == board['9'] == player) or
+        (board['1'] == board['4'] == board['7'] == player) or
+        (board['2'] == board['5'] == board['8'] == player) or
+        (board['3'] == board['6'] == board['9'] == player) or
+        (board['1'] == board['5'] == board['9'] == player) or
+        (board['3'] == board['5'] == board['7'] == player)):
+        return True
+    return False
+
+
+def is_board_full(board):
+    for space in ALL_SPACES:
+        if board[space] == BLANK:
+            return False
+    return True
+
+
+def update_board(board, move, mark):
+    board[move] = mark
+
+
 if __name__ == '__main__':
     main()
