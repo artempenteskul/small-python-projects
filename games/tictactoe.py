@@ -32,5 +32,26 @@ def main():
         print('Thanks for playing!')
 
 
+def get_blank_board():
+    board = {}
+    for space in ALL_SPACES:
+        board[space] = BLANK
+    return board
+
+
+def get_board_str(board):
+    return f'''
+    {board['1']} | {board['2']} | {board['3']}   1  2  3
+    --+---+--
+    {board['4']} | {board['5']} | {board['6']}   4  5  6
+    --+---+-- 
+    {board['9']} | {board['8']} | {board['9']}   7  8  9
+    '''
+
+
+def is_valid_space(board, space):
+    return True if board[space] == BLANK and space in ALL_SPACES else False
+
+
 if __name__ == '__main__':
     main()
