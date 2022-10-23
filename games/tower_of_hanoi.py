@@ -26,7 +26,7 @@ def main():
         if COMPLETE_TOWER in (towers['B'], towers['C']):
             display_towers(towers)
             print()
-            print(f'You have solved the puzzle by {moves} moves! Try to increase the amount of disks ot {TOTAL_DISKS + 1}!')
+            print(f'You have solved the puzzle by {moves} moves! Try to increase the amount of disks to {TOTAL_DISKS + 1}!')
             sys.exit()
 
 
@@ -85,4 +85,3 @@ def display_disk(width):
 
 if __name__ == '__main__':
     main()
-
