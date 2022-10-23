@@ -1,3 +1,6 @@
+import random
+
+
 X, O, BLANK = 'X', 'O', ' '
 ALL_SPACES = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
@@ -6,7 +9,9 @@ def main():
     print('Welcome to Tic-Tac-Toe Game')
 
     game_board = get_blank_board()
-    move_player, wait_player = X, O
+    possible_moves = [X, O]
+    random.shuffle(possible_moves)
+    move_player, wait_player = possible_moves
 
     while True:
         print(get_board_str(game_board))
