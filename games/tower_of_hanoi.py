@@ -13,6 +13,7 @@ def main():
     print('Larger disks cannot rest on top of a smaller disk.')
     print()
 
+    moves = 0
     towers = {'A': copy.copy(COMPLETE_TOWER), 'B': [], 'C': []}
 
     while True:
@@ -20,11 +21,12 @@ def main():
         from_tower, to_tower = ask_for_move(towers)
         disk = towers[from_tower].pop()
         towers[to_tower].append(disk)
+        moves += 1
 
         if COMPLETE_TOWER in (towers['B'], towers['C']):
             display_towers(towers)
             print()
-            print(f'You have solved the puzzle! Try to increase the amount of disks ot {TOTAL_DISKS + 1}!')
+            print(f'You have solved the puzzle by {moves} moves! Try to increase the amount of disks ot {TOTAL_DISKS + 1}!')
             sys.exit()
 
 
@@ -76,7 +78,7 @@ def display_disk(width):
     if width == 0:
         print(f'{empty_space}||{empty_space}', end='')
     else:
-        disk = '@' * empty_space
+        disk = '@' * width
         num_label = str(width).rjust(2, '_')
         print(f'{empty_space}{disk}{num_label}{disk}{empty_space}', end='')
 
