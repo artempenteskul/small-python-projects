@@ -21,6 +21,7 @@ def main():
         print('Please enter "e" or "d" letter.')
 
     while True:
+        print()
         print('Please specify the key to use.')
         print('It can be a word or any combination of letters.')
         response = input('> ').upper()
@@ -40,7 +41,7 @@ def main():
         raise
 
     print()
-    print(f'{mode.title()}ed message: ')
+    print(f'{mode.title()}ed message:')
     print(translated)
     print()
 
